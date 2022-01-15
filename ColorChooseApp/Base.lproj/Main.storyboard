@@ -88,9 +88,6 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="aSG-6S-KE0" secondAttribute="trailing" id="3K8-lB-Kfd"/>
-                                </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="20b-9B-eaI">
                                 <rect key="frame" x="20" y="64" width="374" height="230"/>
