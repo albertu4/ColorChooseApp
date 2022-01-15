@@ -12,48 +12,68 @@ class ViewController: UIViewController {
     //MARK: IBOutlets
     @IBOutlet var colorWindowView: UIView!
     
-    //Values of Sliders
     @IBOutlet var valueOfRed: UILabel!
     @IBOutlet var valueOfGreen: UILabel!
     @IBOutlet var valueOfBlue: UILabel!
     
-    //Sliders
     @IBOutlet var redColorSlider: UISlider!
     @IBOutlet var greenColorSlider: UISlider!
     @IBOutlet var blueColorSlider: UISlider!
 
-    //Values for colors
-    var redColor: CGFloat = 0
-    var greenColor: CGFloat = 0
-    var blueColor: CGFloat = 0
+    //MARK: Private properties
+    private var redColor: CGFloat = 0.20
+    private var greenColor: CGFloat = 0.57
+    private var blueColor: CGFloat = 0.80
     
+    //MARK: Override method
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         colorWindowView.layer.cornerRadius = 10
+        
+        //Default sets
+        redColorSlider.value = Float(redColor)
+        greenColorSlider.value = Float(greenColor)
+        blueColorSlider.value = Float(greenColor)
+        
+        transferSliderToValue(redColorSlider)
+        transferSliderToValue(greenColorSlider)
+        transferSliderToValue(blueColorSlider)
+        
+        changeColor()
     }
     
     //MARK: IBActions
     @IBAction func useRedColorSlider() {
-        valueOfRed.text = String(format: "%.2f", redColorSlider.value)
+        transferSliderToValue(redColorSlider)
         redColor = CGFloat(redColorSlider.value)
         changeColor()
     }
     
     @IBAction func useGreenColorSlider() {
-        valueOfGreen.text = String(format: "%.2f", greenColorSlider.value)
+        transferSliderToValue(greenColorSlider)
         greenColor = CGFloat(greenColorSlider.value)
         changeColor()
     }
     
     @IBAction func useBlueColorSlider() {
-        valueOfBlue.text = String(format: "%.2f", blueColorSlider.value)
+        transferSliderToValue(blueColorSlider)
         blueColor = CGFloat(blueColorSlider.value)
         changeColor()
     }
     
-    //MARK: logic to set of colors
-    func changeColor() {
+    //MARK: Private Methods
+    private func transferSliderToValue(_ slider: UISlider) {
+        switch slider {
+        case redColorSlider:
+            valueOfRed.text = String(format: "%.2f", redColorSlider.value)
+        case greenColorSlider:
+            valueOfGreen.text = String(format: "%.2f", greenColorSlider.value)
+        default:
+            valueOfBlue.text = String(format: "%.2f", blueColorSlider.value)
+        }
+    }
+        
+    private func changeColor() {
         let backgroundColorOfView = UIColor(red: redColor, green: greenColor, blue: blueColor, alpha: 1)
         colorWindowView.backgroundColor = backgroundColorOfView
     }
